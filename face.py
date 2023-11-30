@@ -16,7 +16,7 @@ import os
 current_script_path = os.path.realpath(__file__)
 
 # Define the relative path to your model file
-relative_model_path = "svm_model_hog_64_128_c10_poly_60.pkl"
+relative_model_path = "model.pkl"
 
 # Construct the absolute path to the model file
 absolute_model_path = os.path.join(os.path.dirname(current_script_path), relative_model_path)
@@ -140,14 +140,18 @@ def main():
                 # Convert BGR to RGB
                 image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
+                st.subheader('The Most Likely Match', divider='rainbow')
+
                 # Display the image
                 with st.container():
                     st.image(image, width=250, use_column_width=False)
-                    st.write(f"{top_person_label} : {top_person_prob * 100:.2f}%")
+                    st.markdown(f'<p style="font-size: 20px;"><span style="background-color: #8FED8F;padding: 2px 2px '
+                                f'2px 2px;">{top_person_label}</span> : {top_person_prob * 100:.2f}%</p>',
+                                unsafe_allow_html=True)
 
                 # Create columns for the next 5 persons
+                st.subheader('5 Additional Similar Faces', divider='rainbow')
                 col1, col2, col3, col4, col5 = st.columns(5)
-
                 # Display images and probabilities of the next 5 persons
                 for i in range(1, min(6, len(sorted_pairs))):
                     prob, label = sorted_pairs[i]

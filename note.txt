@@ -1,0 +1,5 @@
+This model is in condition of 
+- augment upto 160
+- testsize = 0.3
+- Accuracy: 0.78
+- param: c:10, kernel: rbf, probability:true
