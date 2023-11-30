@@ -6,9 +6,6 @@ from skimage.transform import resize
 from skimage.feature import hog
 from PIL import Image
 from skimage import feature, transform
-import lzma
-import base64
-from io import BytesIO
 import numpy as np
 import os
 
@@ -25,10 +22,6 @@ with open(absolute_model_path, 'rb') as model_file:
     clf = pickle.load(model_file)
 
 class_labels = clf.classes_
-
-import base64
-from io import BytesIO
-import matplotlib.pyplot as plt
 
 # Function to perform HOG feature extraction on an image
 def extract_hog_features2(image):
